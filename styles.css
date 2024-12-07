@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    padding:0px;
+    border: 1px;
+    margin:0px;
+    background-color: #181818;
+    color:white;
+}
+
+.header {
+    display:flex;
+    justify-content: space-between;
+    background-color: #242424;
+    padding:10px;
+    padding-left: 40px;
+    padding-right:40px;
+    
+}
+
+.iconTitle {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 750;
+    font-size:1.3rem;
+    background-color: #242424;
+    
+}
+
+#userInput {
+    padding: 0.3rem;
+    width: 150px;
+    border-radius:30px;
+    outline:none;
+    color: #ffffff;
+    border: .12rem solid white;
+
+}
+
+.searchDiv {
+    background-color: #242424;
+    display: flex;
+    gap: 1rem;
+}
+
+
+
