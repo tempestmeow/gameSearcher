@@ -26,13 +26,23 @@
 }
 
 #userInput {
-    padding: 0.3rem;
+    padding: 0.4rem;
     width: 150px;
-    border-radius:30px;
+    border-radius:10px;
     outline:none;
     color: #ffffff;
-    border: .12rem solid white;
+    border: .15rem solid #969090;
+    transition: border .4s;
+    
 
+}
+
+#userInput::placeholder {
+    color:#cfc1c1;
+}
+
+#userInput:focus{ 
+    border: .17rem solid rgb(255, 171, 185);
 }
 
 .searchDiv {
@@ -41,5 +51,149 @@
     gap: 1rem;
 }
 
+#submitButton {
+    width: 4rem;
+    border-radius: 10px;
+
+}
+
+#submitButton:hover {
+    background-color: #363434;
+    transform:scale(1.13);
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+}
+
+.bodyBar { 
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight:1000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+}
+
+.newReleases,.top { 
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
 
+
+a {
+    padding-left:40px;
+    display:block;
+    font-weight: 1;
+    font-family: serif;
+    font-size: 1.1rem;
+}
+
+p {
+    padding-bottom: 10px;
+    margin: 0;
+    padding:0;
+}
+
+.pagesContainer {
+    display:grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    margin: 30px 30px 0px 0px;
+    flex:1;
+    gap: 20px;
+    
+}
+
+.gameBackground {
+    width: 100%;
+    max-height: 200px; /* Adjusted for a more proportional look */
+    object-fit: cover;
+}
+
+.gameCard {
+    display: flex;
+    flex-direction: column;
+    background-color: #242424; /* Matches header and searchDiv for consistency */
+    border-radius: 15px;
+    overflow: hidden; /* Ensures content doesn't overflow the card */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover animation */
+}
+
+.gameInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Aligns content vertically */
+    padding: 10px 15px;
+    background-color: #1f1f1f; /* Subtle contrast for the info section */
+    color: #ffffff;
+}
+
+.gameCard:hover {
+    transform: scale(1.05); /* Slight scaling effect on hover */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.gameName {
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+}
+
+.gameMetaRating {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2ee41e; /* Highlight rating with a golden color */
+}
+
+h3 {
+    background-color: inherit;
+}
+    
+p {
+    display: flex;
+
+}
+
+.icon {
+    width: 100%;
+    height: 29px;
+    object-fit: contain;
+    flex:1;
+    background-color: #363434;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+a {
+    display: flex;
+    width: 1;
+    gap:5px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a1 {
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    background-color: inherit;
+    
+}
+
+a:hover .icon{
+    transform: scale(1.20);
+    background-color: #4d4a4a;
+    
+}
+
+a:hover {
+    cursor: pointer;
+}
