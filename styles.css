@@ -3,6 +3,7 @@
   padding: 0;
   margin: 0;
   background-color: #181818;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: white;
 }
 
@@ -27,7 +28,8 @@
   outline: none;
   color: #ffffff;
   border: 0.15rem solid #969090;
-  transition: border 0.4s;
+  transition: border 0.4s, background-color 0.4s;
+  background-color: #242424;
 }
 
 #userInput::placeholder {
@@ -36,6 +38,12 @@
 
 #userInput:focus {
   border: 0.17rem solid rgb(255, 171, 185);
+  transform: scale(1.05);
+}
+
+#userInput:hover + .suggestions {
+  background-color: #333333;
+  color: #ffffff;
 }
 
 .searchDiv {
@@ -48,6 +56,7 @@
   width: 4rem;
   border-radius: 10px;
   transition: background-color 0.3s, transform 0.3s;
+  border: none;
 }
 
 #submitButton:hover {
@@ -58,6 +67,7 @@
 .body {
   display: flex;
   flex-direction: row;
+  height: 100vh;
 }
 
 .bodyBar {
@@ -69,6 +79,7 @@
   font-weight: 1000;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   flex: 1;
+  transition: all 0.3s ease-in-out;
 }
 
 .newReleases,
@@ -83,6 +94,12 @@ a {
   display: block;
   font-family: serif;
   font-size: 1.1rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+a:hover {
+  color: #f0e68c;
+  transform: scale(1.1);
 }
 
 p {
@@ -92,9 +109,11 @@ p {
 .pagesContainer {
   display: grid;
   grid-template-columns: repeat(4, minmax(100px, 1fr));
+  grid-template-rows: repeat(3, 230px);
   margin: 30px 30px 0 0;
-  flex: 1;
+  flex: 7;
   gap: 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .gameBackground {
@@ -111,11 +130,11 @@ p {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .gameCard:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
 }
 
@@ -124,6 +143,15 @@ p {
   font-weight: bold;
   font-family: "Open Sans", sans-serif;
   background-color: inherit;
+}
+
+.gameInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #1f1f1f;
+  color: #ffffff;
 }
 
 .gameMetaRating {
@@ -191,7 +219,7 @@ a:hover {
   background-color: inherit;
 }
 
-.gameInfo {
+.cardInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -200,7 +228,8 @@ a:hover {
   color: #ffffff;
   flex: 8;
   width: 100%;
-  flex-direction: column;
+  flex-direction: row;
+  margin-bottom: 6rem;
 }
 
 .gameDetails {
@@ -209,7 +238,6 @@ a:hover {
   background-color: #1f1f1f;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .ratingsCount,
@@ -219,7 +247,6 @@ a:hover {
 .gameStores {
   font-size: 1rem;
   margin-bottom: 10px;
-  background-color: inherit;
 }
 
 .gameDescription {
@@ -227,8 +254,101 @@ a:hover {
   margin-bottom: 10px;
   color: #aaaaaa;
   background-color: inherit;
+  text-align: justify;
 }
 
-.gameRatings {
-  color: #2ee41e;
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: inherit;
+  color: #ffffff;
+  flex: 8;
+  width: 100%;
+  flex-direction: column;
+}
+
+.gridContainer {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  background-color: transparent;
+  align-self: center;
+  row-gap: 10px;
+  column-gap: 150px;
+}
+
+.gameTitleInfo {
+  font-size: 3rem;
+}
+
+.gameDescription {
+  font-size: 1.05rem;
+}
+
+/* Add animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pagesContainer,
+.cardInfo,
+.gameCard,
+a {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.newReleases,
+.top,
+.allGames,
+.daysAgo,
+.lastWeek,
+p,
+.thisWeek,
+.bestYear,
+.popular,
+.allTime,
+.allGames,
+.gameDetails,
+.bodyBar {
+  background-color: transparent;
+}
+
+.gridContainer {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  background-color: transparent;
+  align-self: center;
+  row-gap: 10px;
+  column-gap: 150px;
+  background-color: inherit;
+}
+
+.info {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #6b6969;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7e7d7d;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  border-radius: 10px;
 }
