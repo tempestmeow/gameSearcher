@@ -1,8 +1,7 @@
 * {
   box-sizing: border-box;
-  padding: 0px;
-  border: 1px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
   background-color: #181818;
   color: white;
 }
@@ -11,9 +10,7 @@
   display: flex;
   justify-content: space-between;
   background-color: #242424;
-  padding: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 10px 40px;
 }
 
 .iconTitle {
@@ -50,6 +47,7 @@
 #submitButton {
   width: 4rem;
   border-radius: 10px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 #submitButton:hover {
@@ -70,6 +68,7 @@
   font-size: 1.3rem;
   font-weight: 1000;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  flex: 1;
 }
 
 .newReleases,
@@ -80,67 +79,57 @@
 }
 
 a {
-  padding-left: 40px;
+  padding-left: 10px;
   display: block;
-  font-weight: 1;
   font-family: serif;
   font-size: 1.1rem;
 }
 
 p {
   padding-bottom: 10px;
-  margin: 0;
-  padding: 0;
 }
 
 .pagesContainer {
   display: grid;
   grid-template-columns: repeat(4, minmax(100px, 1fr));
-  margin: 30px 30px 0px 0px;
+  margin: 30px 30px 0 0;
   flex: 1;
   gap: 20px;
 }
 
 .gameBackground {
   width: 100%;
-  max-height: 200px; /* Adjusted for a more proportional look */
+  max-height: 200px;
   object-fit: cover;
+  border-radius: 15px 15px 0 0;
 }
 
 .gameCard {
   display: flex;
   flex-direction: column;
-  background-color: #242424; /* Matches header and searchDiv for consistency */
+  background-color: #242424;
   border-radius: 15px;
-  overflow: hidden; /* Ensures content doesn't overflow the card */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-  transition: transform 0.2s, box-shadow 0.2s; /* Smooth hover animation */
-}
-
-.gameInfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center; /* Aligns content vertically */
-  padding: 10px 15px;
-  background-color: #1f1f1f; /* Subtle contrast for the info section */
-  color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .gameCard:hover {
-  transform: scale(1.05); /* Slight scaling effect on hover */
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .gameName {
   font-size: 1.1rem;
   font-weight: bold;
   font-family: "Open Sans", sans-serif;
+  background-color: inherit;
 }
 
 .gameMetaRating {
   font-size: 1rem;
   font-weight: 600;
-  color: #2ee41e; /* Highlight rating with a golden color */
+  color: #2ee41e;
 }
 
 h3 {
@@ -163,7 +152,6 @@ p {
 
 a {
   display: flex;
-  width: 1;
   gap: 5px;
   align-items: center;
   justify-content: space-between;
@@ -185,4 +173,62 @@ a:hover .icon {
 
 a:hover {
   cursor: pointer;
+}
+
+.infoImage {
+  width: 100%;
+  max-width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.gameTitleInfo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: inherit;
+}
+
+.gameInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: inherit;
+  color: #ffffff;
+  flex: 8;
+  width: 100%;
+  flex-direction: column;
+}
+
+.gameDetails {
+  display: flex;
+  flex-direction: column;
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ratingsCount,
+.gamePlatforms,
+.gameGenres,
+.gameRatings,
+.gameStores {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  background-color: inherit;
+}
+
+.gameDescription {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #aaaaaa;
+  background-color: inherit;
+}
+
+.gameRatings {
+  color: #2ee41e;
 }

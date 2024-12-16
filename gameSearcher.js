@@ -1,6 +1,5 @@
 const userInput = document.getElementById("userInput");
 const submitButton = document.getElementById("submitButton");
-
 const pagesContainer = document.querySelector(".pagesContainer");
 const apiKey = "2c80b02fad8b4f65872780867579ae94";
 const submitByMonth = document.querySelector(".daysAgo");
@@ -9,31 +8,7 @@ const thisWeek = document.querySelector(".thisWeek");
 const bestYear = document.querySelector(".bestYear");
 const popular = document.querySelector(".popular");
 const allTime = document.querySelector(".allTime");
-/*
-async function fetchData() {
-
-    try {
-        
-        const pokemonName = userInput.value
-        const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-        const data = await result.json();
-        const pokemonImg = data.sprites.front_shiny;
-        
-    
-
-        output.src= pokemonImg;
-
-    }
-    catch(error) {
-        console.log(error);
-    }
-}
-
-submitButton.addEventListener('click', () => {
-
-    fetchData();
-
-}) */
+const body = document.querySelector(".body");
 
 const searchGames = async (input) => {
   try {
@@ -47,8 +22,6 @@ const searchGames = async (input) => {
     console.error("error fetching from api");
   }
 };
-
-searchGames();
 
 const searchByLastMonth = async () => {
   try {
@@ -104,20 +77,6 @@ submitByMonth.addEventListener("click", () => {
 thisWeek.addEventListener("click", () => {
   searchByLastWeek();
 });
-/*
-for(i=0;i <12; i++) {
-    const gameCard = document.createElement('div');
-    gameCard.classList.add('gameCard');
-
-    gameCard.innerHTML = `
-    <img class="gameBackground" src="https://media.rawg.io/media/games/936/936f0ffac0b3c9f5c8d185f610ed2631.jpg">
-    <div class="gameInfo"><h3 class="gameName">Super Mario Galaxy</h3>
-    <h3 class="gameMetaRating">97</h3></div>
-
-    `
-    pagesContainer.appendChild(gameCard);
-
-} */
 
 const displayGames = (games) => {
   pagesContainer.innerHTML = "";
@@ -130,25 +89,93 @@ const displayGames = (games) => {
         <img class="gameBackground" src="${game.background_image}">
         <div class="gameInfo"><h3 class="gameName">${game.name}</h3>
         <h3 class="gameMetaRating">${game.rating}</h3></div>
-
         `;
+
     pagesContainer.appendChild(gameCard);
+
+    gameCard.addEventListener("click", () => {
+      fetchGameDetails(game.id);
+    });
   });
 };
 
-submitButton.addEventListener("click", () => {
-  searchGamesMetaCritic(userInput.value);
-});
-
-const searchGamesMetaCritic = async (input) => {
+const fetchGameDetails = async (gameId) => {
   try {
     const response = await fetch(
-      `https://api.rawg.io/api/games?ordering=-metacritic&key=${apiKey}&search=${input}&page_size=100`
+      `https://api.rawg.io/api/games/${gameId}?key=${apiKey}`
     );
-    const data = await response.json();
-    displayGames(data.results);
-    console.log(data.results);
+    const game = await response.json();
+    displayGameDetails(game);
   } catch (error) {
-    console.error("error fetching from api");
+    console.error("error fetching game details", error);
   }
 };
+
+const displayGameDetails = (game) => {
+  console.log(game);
+  pagesContainer.innerHTML = "";
+
+  const gameInfo = document.createElement("div");
+  gameInfo.classList.add("gameInfo");
+
+  const platformNames = game.platforms.map((x) => x.platform.name).join(", ");
+  const genres = game.genres.map((x) => x.name).join(", ");
+  const stores = game.stores.map((x) => x.store.name).join(", ");
+  const ratings = game.ratings.map((x) => `${x.title}: ${x.count}`).join(", ");
+
+  gameInfo.innerHTML = `
+    <img class="infoImage" src="${game.background_image}"></div>
+    <div class="gameDetails">
+        <div class="gameTitleInfo">${game.name}</div>
+        <div class="gameDescription">${game.description}</div>
+        <div class="ratingsCount">Ratings: ${game.ratings_count}</div>
+        <div class="gamePlatforms">Available on: ${platformNames}</div>
+        <div class="gameGenres">Genres: ${genres}</div>
+        <div class="gameRatings">${ratings}</div>
+        <div class="gameStores">Stores Available: ${stores}</div>
+    </div>
+  `;
+
+  pagesContainer.remove();
+  body.appendChild(gameInfo);
+  body.style.background = `linear-gradient(to bottom, transparent 30%, black 100%), url('${game.background_image}')`;
+};
+
+submitButton.addEventListener("click", () => {
+  searchGames(userInput.value);
+});
+
+pagesContainer.innerHTML = "";
+
+const gameInfo = document.createElement("div");
+gameInfo.classList.add("gameInfo");
+
+/*
+gameInfo.innerHTML = `
+  <img class="infoImage" src="
+https://media.rawg.io/media/games/779/77988e89f7862afeede524420aa251b0.jpg"></div>
+  <div class="gameDetails">
+      <div class="gameTitleInfo">Black Myth: Wukong</div>
+      <div class="gameDescription">A world unseen, where new sights rise with every stride. Enter a fascinating realm filled with the wonders and discoveries of ancient Chinese mythology!
+
+As the Destined One, you shall venture through breathtaking landscapes in the classic tale of Journey to the West, creating a new epic of uncharted adventures.
+
+Heroic Monkey, might and fame, adversaries rise, to test his name. One of the major highlights of Journey to the West is its diverse cast of adversaries, each with unique strengths.
+As the Destined One, you shall encounter powerful foes and worthy rivals throughout your journey. Fearlessly engage them in epic battles that know no surrender.
+
+Spells unbound, knowledge's flight, infinite abilities take their height. Spells, transformations, and magic vessels in all manifestations, complementary yet adversarial, have long been iconic combat elements in Chinese mythology.
+As the Destined One, aside from mastering various staff techniques, you can also freely combine different spells, abilities, weapons, and equipment to find the winning formula that best suits your combat style.
+
+Within beings of every kind lies the story of a life. Beneath the ferocity and craftiness of your foes lies an engaging tapestry of their origins, personalities, and motivations waiting to be revealed.
+As the Destined One, you will uncover the stories behind a variety of characters, delving beyond your battles with them, to taste the love and hate, greed and fury they once had and still carry with them.</div>
+      <div class="ratingsCount">Ratings: 75</div>
+      <div class="gamePlatforms">Available on: PC, Xbox Series S/X, PlayStation 5</div>
+      <div class="gameGenres">Genres: Action, Adventure, RPG</div>
+      <div class="gameRatings">exceptional: 50, recommended: 18, meh: 7, skip: 4</div>
+      <div class="gameStores">Stores Available: Epic Games, Steam</div>
+  </div>
+`;
+
+pagesContainer.remove();
+body.appendChild(gameInfo);
+*/
