@@ -1,6 +1,6 @@
 const userInput = document.getElementById("userInput");
 const submitButton = document.getElementById("submitButton");
-const apiKey = "2c80b02fad8b4f65872780867579ae94";
+const apiKey = process.env.apiKey;
 const submitByMonth = document.querySelector(".daysAgo");
 const lastWeek = document.querySelector(".lastWeek");
 const thisWeek = document.querySelector(".thisWeek");
