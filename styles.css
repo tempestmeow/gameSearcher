@@ -352,3 +352,105 @@ p,
   background-color: #ffffff;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 1200px) {
+  .body {
+    flex-direction: column;
+  }
+
+  .bodyBar {
+    margin: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .top,
+  .newReleases,
+  .allGames {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .pagesContainer {
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    grid-template-rows: auto;
+    margin: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .searchDiv {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #userInput {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .bodyBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagesContainer {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .pagesContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .gameCard {
+    max-width: 100%;
+  }
+
+  .gridContainer {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .gameTitleInfo {
+    font-size: 2rem;
+  }
+}
+
+#userInput,
+#submitButton {
+  padding: 0.6rem;
+  font-size: 1rem;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+.gameBackground,
+.infoImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
