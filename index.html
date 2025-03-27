@@ -15,7 +15,6 @@
   <body>
     <div class="header">
       <div class="iconTitle">GAPP</div>
-
       <div class="searchDiv">
         <input type="text" placeholder="Search Game" id="userInput" />
         <button id="submitButton">Search</button>
@@ -48,13 +47,16 @@
             ><img class="icon" src="3.png" /><a1>This Week</a1></a
           >
         </div>
-
-        <div class="allGames">
-          <p>All Games</p>
-          <a></a>
-        </div>
       </div>
-      <div class="pagesContainer"></div>
+      <div class="main-right">
+        <select id="sortGames">
+          <option value="default">Sort By</option>
+          <option value="name">Name</option>
+          <option value="rating">Highest Rating</option>
+          <option value="released">Date</option>
+        </select>
+        <div class="pagesContainer"></div>
+      </div>
     </div>
     <script src="gameSearcher.js"></script>
   </body>

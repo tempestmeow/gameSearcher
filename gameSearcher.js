@@ -8,16 +8,47 @@ const bestYear = document.querySelector(".bestYear");
 const popular = document.querySelector(".popular");
 const allTime = document.querySelector(".allTime");
 const body = document.querySelector(".body");
+const sortGamesDropdown = document.getElementById("sortGames");
 
 let pagesContainer = document.querySelector(".pagesContainer");
 let cardInfo = null;
+let currentGames = [];
+
+const sortGames = (games, sortBy) => {
+  switch (sortBy) {
+    case "name":
+      return games.sort((a, b) => a.name.localeCompare(b.name));
+    case "name-desc":
+      return games.sort((a, b) => b.name.localeCompare(a.name));
+    case "rating":
+      return games.sort((a, b) => b.rating - a.rating);
+    case "rating-lowest":
+      return games.sort((a, b) => a.rating - b.rating);
+    case "released":
+      return games.sort((a, b) => new Date(b.released) - new Date(a.released));
+    case "released-oldest":
+      return games.sort((a, b) => new Date(a.released) - new Date(b.released));
+    default:
+      return games;
+  }
+};
+
+sortGamesDropdown.addEventListener("change", (e) => {
+  const sortBy = e.target.value;
+  if (sortBy !== "default") {
+    const sortedGames = sortGames([...currentGames], sortBy);
+    displayGames(sortedGames);
+  }
+});
+
 const searchGames = async (input) => {
   try {
     const response = await fetch(
       `https://api.rawg.io/api/games?ordering=-metacritic&key=${apiKey}&search=${input}&page_size=100`
     );
     const data = await response.json();
-    displayGames(data.results);
+    currentGames = data.results;
+    displayGames(currentGames);
     console.log(data.results);
   } catch (error) {
     console.error("Error fetching from API", error);
@@ -30,36 +61,11 @@ const searchByBestYear = async () => {
       `https://api.rawg.io/api/games?ordering=-metacritic,-rating,-reviews_count&key=${apiKey}&dates=2023-12-09,2024-12-09&page_size=100`
     );
     const data = await response.json();
+    currentGames = data.results;
     console.log(data);
-    displayGames(data.results);
+    displayGames(currentGames);
   } catch (error) {
     console.error("Error fetching data from RAWG API", error);
-  }
-};
-
-const searchByLastMonth = async () => {
-  try {
-    const response = await fetch(
-      `https://api.rawg.io/api/games?ordering=-released&key=${apiKey}&date=2024-12-09&page_size=100`
-    );
-    const data = await response.json();
-    console.log(data);
-    displayGames(data.results);
-  } catch (error) {
-    console.log("Error fetching data from RAWG API", error);
-  }
-};
-
-const searchByLastWeek = async () => {
-  try {
-    const response = await fetch(
-      `https://api.rawg.io/api/games?ordering=released&key=${apiKey}&date=2024-12-02,2024-12-09&page_size=100`
-    );
-    const data = await response.json();
-    console.log(data);
-    displayGames(data.results);
-  } catch (error) {
-    console.log("Error fetching data from RAWG API", error);
   }
 };
 
@@ -73,24 +79,101 @@ const createPagesContainer = () => {
   }
 };
 
-const resetView = () => {
-  if (cardInfo) {
-    cardInfo.remove();
-    cardInfo = null;
+const searchByPopular2024 = async () => {
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?ordering=-rating&key=${apiKey}&dates=2024-01-01,2024-12-31&page_size=100`
+    );
+    const data = await response.json();
+    currentGames = data.results;
+    console.log(data);
+    displayGames(currentGames);
+  } catch (error) {
+    console.error("Error fetching popular games from RAWG API", error);
   }
-  body.style.background = "#181818";
 };
 
-bestYear.addEventListener("click", () => {
-  resetView();
-  createPagesContainer();
-  searchByBestYear();
-});
+const searchByAllTimePopular = async () => {
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?ordering=-rating,-reviews_count&key=${apiKey}&page_size=100`
+    );
+    const data = await response.json();
+    currentGames = data.results;
+    console.log(data);
+    displayGames(currentGames);
+  } catch (error) {
+    console.error("Error fetching all-time popular games from RAWG API", error);
+  }
+};
 
-lastWeek.addEventListener("click", () => {
+const searchByLastMonth = async () => {
+  const today = new Date();
+  const thirtyDaysAgo = new Date(today);
+  thirtyDaysAgo.setDate(today.getDate() - 30);
+
+  const formattedToday = today.toISOString().split("T")[0];
+  const formattedThirtyDaysAgo = thirtyDaysAgo.toISOString().split("T")[0];
+
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?ordering=-released&key=${apiKey}&dates=${formattedThirtyDaysAgo},${formattedToday}&page_size=100`
+    );
+    const data = await response.json();
+    currentGames = data.results;
+    console.log(data);
+    displayGames(currentGames);
+  } catch (error) {
+    console.log("Error fetching data from RAWG API", error);
+  }
+};
+
+const searchByLastWeek = async () => {
+  const today = new Date();
+  const sevenDaysAgo = new Date(today);
+  sevenDaysAgo.setDate(today.getDate() - 7);
+
+  const formattedToday = today.toISOString().split("T")[0];
+  const formattedSevenDaysAgo = sevenDaysAgo.toISOString().split("T")[0];
+
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?ordering=-released&key=${apiKey}&dates=${formattedSevenDaysAgo},${formattedToday}&page_size=100`
+    );
+    const data = await response.json();
+    currentGames = data.results;
+    console.log(data);
+    displayGames(currentGames);
+  } catch (error) {
+    console.log("Error fetching data from RAWG API", error);
+  }
+};
+
+const searchByThisWeek = async () => {
+  const today = new Date();
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay());
+
+  const formattedToday = today.toISOString().split("T")[0];
+  const formattedStartOfWeek = startOfWeek.toISOString().split("T")[0];
+
+  try {
+    const response = await fetch(
+      `https://api.rawg.io/api/games?ordering=-released&key=${apiKey}&dates=${formattedStartOfWeek},${formattedToday}&page_size=100`
+    );
+    const data = await response.json();
+    currentGames = data.results;
+    console.log(data);
+    displayGames(currentGames);
+  } catch (error) {
+    console.log("Error fetching data from RAWG API", error);
+  }
+};
+
+thisWeek.addEventListener("click", () => {
   resetView();
   createPagesContainer();
-  searchByLastWeek();
+  searchByThisWeek();
 });
 
 submitByMonth.addEventListener("click", () => {
@@ -99,10 +182,37 @@ submitByMonth.addEventListener("click", () => {
   searchByLastMonth();
 });
 
-thisWeek.addEventListener("click", () => {
+lastWeek.addEventListener("click", () => {
   resetView();
   createPagesContainer();
   searchByLastWeek();
+});
+
+popular.addEventListener("click", () => {
+  resetView();
+  createPagesContainer();
+  searchByPopular2024();
+});
+
+allTime.addEventListener("click", () => {
+  resetView();
+  createPagesContainer();
+  searchByAllTimePopular();
+});
+
+const resetView = () => {
+  if (cardInfo) {
+    cardInfo.remove();
+    cardInfo = null;
+  }
+  body.style.background = "#181818";
+  sortGamesDropdown.selectedIndex = 0;
+};
+
+bestYear.addEventListener("click", () => {
+  resetView();
+  createPagesContainer();
+  searchByBestYear();
 });
 
 const displayGames = (games) => {
@@ -119,7 +229,7 @@ const displayGames = (games) => {
     gameCard.classList.add("gameCard");
 
     gameCard.innerHTML = `
-      <img class="gameBackground" src="${game.background_image}">
+        <img class="gameBackground" src="${game.background_image}">
       <div class="gameInfo">
         <h3 class="gameName">${game.name}</h3>
         <h3 class="gameMetaRating">${game.rating}</h3>
