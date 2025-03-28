@@ -17,13 +17,13 @@
 .iconTitle {
   font-family: "Open Sans", sans-serif;
   font-weight: 750;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   background-color: #242424;
 }
 
 #userInput {
   padding: 0.4rem;
-  width: 150px;
+  max-width: 150px;
   border-radius: 10px;
   outline: none;
   color: #ffffff;
@@ -378,20 +378,10 @@ p,
   }
 
   .header {
-    flex-direction: column;
     align-items: center;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 1rem;
     gap: 10px;
-  }
-
-  .searchDiv {
-    width: 100%;
-    justify-content: center;
-  }
-
-  #userInput {
-    width: 100%;
-    max-width: 250px;
   }
 
   .bodyBar {
@@ -468,4 +458,8 @@ select {
 .top,
 .newReleases {
   min-width: 110px;
+}
+
+.searchIcon {
+  fill: white;
 }

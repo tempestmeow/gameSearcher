@@ -13,6 +13,7 @@ const sortGamesDropdown = document.getElementById("sortGames");
 let pagesContainer = document.querySelector(".pagesContainer");
 let cardInfo = null;
 let currentGames = [];
+let inGame = false;
 
 const sortGames = (games, sortBy) => {
   switch (sortBy) {
@@ -201,6 +202,10 @@ allTime.addEventListener("click", () => {
 });
 
 const resetView = () => {
+  inGame = false;
+
+  updateSortVisibility();
+
   if (cardInfo) {
     cardInfo.remove();
     cardInfo = null;
@@ -240,6 +245,7 @@ const displayGames = (games) => {
 
     gameCard.addEventListener("click", () => {
       fetchGameDetails(game.id);
+      inGame = !inGame;
     });
   });
 };
@@ -257,6 +263,7 @@ const fetchGameDetails = async (gameId) => {
 };
 
 const displayGameDetails = (game) => {
+  updateSortVisibility();
   console.log(game);
   if (!pagesContainer) return;
 
@@ -301,3 +308,7 @@ submitButton.addEventListener("click", () => {
 });
 
 searchByBestYear();
+
+const updateSortVisibility = () => {
+  sortGamesDropdown.style.display = inGame ? "none" : "block";
+};
