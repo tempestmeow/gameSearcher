@@ -398,8 +398,13 @@ p,
   }
 
   .gridContainer {
+    align-self: self-start;
     grid-template-columns: 1fr;
-    column-gap: 0;
+    padding-top: 1.5rem;
+  }
+
+  .info {
+    margin-bottom: 20px;
   }
 
   .gameTitleInfo {
@@ -470,4 +475,15 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.info {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: transparent;
+}
+
+.info-icon {
+  font-size: 24px;
 }

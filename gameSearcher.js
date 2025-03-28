@@ -294,13 +294,23 @@ arrow_back_ios
         game.description_raw ? game.description_raw : game.description
       }</div>
       <div class="gridContainer">
-        <div class="ratingsCount info">${ratings}</div>
-        <div class="gamePlatforms info">Available on: ${platformNames}</div>
-        <div class="gameGenres info">Genres: ${genres}</div>
-        <div class="gameRatings info">${ratings}</div>
-        <div class="gameStores info">Stores Available: ${stores}</div>
+        <div class="ratingsCount info"><div class="material-symbols-outlined game-name info-icon">
+sports_score
+</div><div class="game-name">${ratings}</div></div>
+  
+   <div class="ratingsCount info"><div class="material-symbols-outlined game-name info-icon">
+sports_esports
+</div><div class="game-name">Available on: ${platformNames}</div></div>
+   <div class="ratingsCount info"><div class="material-symbols-outlined game-name info-icon">
+align_horizontal_left
+   </div><div class="game-name">Genres: ${genres}</div></div>
+
+   <div class="ratingsCount info"><div class="material-symbols-outlined game-name info-icon">
+storefront
+</div><div class="game-name">Available at: ${stores}</div></div>
       </div>
     </div>
+    <div>
   `;
 
   document.querySelectorAll("*").forEach((element) => {
