@@ -277,6 +277,7 @@ a:hover {
   align-self: center;
   row-gap: 10px;
   column-gap: 150px;
+  width: 100%;
 }
 
 .gameTitleInfo {
