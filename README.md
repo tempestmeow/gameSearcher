@@ -1,3 +1,2 @@
-This is my first ever project I put my heart on. It is a game searcher web app that I use to explore my capabilities in Javascript. It uses vanilla JS and RAWG API for the datas. 
-Will add more features soon after I finish exploring my new interest, which is reactJS websites with integration of AI technologies. 
-Hope you appreciate it ! 
+This is my first ever project I put my heart on. It is a game searcher web app that I use to explore my capabilities in Javascript. It uses vanilla JS and RAWG API for the datas. I had fun making this dark-themed app. After making this app, I proceeded to learn ReactJS, tailwind, threejs, nextjs, and shadcn (didn't like it that much since it has too much presets and im the type of guy who want pixel perfect website in accordance to my figma designs)
+Hope you appreciate it !
