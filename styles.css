@@ -10,7 +10,7 @@
 .header {
   display: flex;
   justify-content: space-between;
-  background-color: #242424;
+  background-color: #222121;
   padding: 10px 40px;
 }
 
@@ -226,7 +226,6 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background-color: black;
   color: #ffffff;
   flex: 8;
   width: 100%;
@@ -450,4 +449,25 @@ select {
 
 .searchIcon {
   fill: white;
+}
+
+.gameTitleInfo {
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+  align-items: center;
+}
+
+.game-name {
+  background: transparent;
+}
+
+.back {
+  padding: 0.5rem 0.3rem 0.5rem 0.7rem;
+  background-color: #000000;
+  font-size: 20px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

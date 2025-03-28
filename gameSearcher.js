@@ -285,7 +285,11 @@ const displayGameDetails = (game) => {
 
   cardInfo.innerHTML = `
     <div class="gameDetails">
-      <div class="gameTitleInfo"><span>${game.name}</span> </div>
+      <div class="gameTitleInfo"><div class="game-name">${
+        game.name
+      }</div> <div class="material-symbols-outlined game-name back">
+arrow_back_ios
+</div> </div>
       <div class="gameDescription">${
         game.description_raw ? game.description_raw : game.description
       }</div>
@@ -315,6 +319,12 @@ const displayGameDetails = (game) => {
   document.documentElement.style.backgroundPosition = "center";
 
   body.appendChild(cardInfo);
+
+  document.querySelector(".back").addEventListener("click", () => {
+    resetView();
+    createPagesContainer();
+    searchByBestYear();
+  });
 };
 
 submitButton.addEventListener("click", () => {
