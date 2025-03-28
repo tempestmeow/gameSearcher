@@ -226,7 +226,7 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 10px 15px;
-  background-color: inherit;
+  background-color: black;
   color: #ffffff;
   flex: 8;
   width: 100%;
@@ -237,7 +237,7 @@ a:hover {
 .gameDetails {
   display: flex;
   flex-direction: column;
-  background-color: #1f1f1f;
+  background-color: black;
   padding: 20px;
   border-radius: 10px;
 }
@@ -364,11 +364,6 @@ p,
 }
 
 @media (max-width: 768px) {
-  .main-right {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-
   select {
     margin-left: 1rem;
   }
@@ -427,13 +422,6 @@ html {
   html {
     font-size: 12px;
   }
-}
-
-.gameBackground,
-.infoImage {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
 }
 
 .main-right {

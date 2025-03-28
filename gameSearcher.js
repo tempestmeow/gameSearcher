@@ -8,6 +8,10 @@ const bestYear = document.querySelector(".bestYear");
 const popular = document.querySelector(".popular");
 const allTime = document.querySelector(".allTime");
 const body = document.querySelector(".body");
+const body_orig = document.querySelector("body");
+const header = document.querySelector(".header");
+const main_right = document.querySelector(".main-right");
+
 const sortGamesDropdown = document.getElementById("sortGames");
 
 let pagesContainer = document.querySelector(".pagesContainer");
@@ -281,7 +285,7 @@ const displayGameDetails = (game) => {
 
   cardInfo.innerHTML = `
     <div class="gameDetails">
-      <div class="gameTitleInfo">${game.name}</div>
+      <div class="gameTitleInfo"><span>${game.name}</span> </div>
       <div class="gameDescription">${
         game.description_raw ? game.description_raw : game.description
       }</div>
@@ -295,8 +299,20 @@ const displayGameDetails = (game) => {
     </div>
   `;
 
-  body.style.background = `linear-gradient(to top, black 30%, transparent 100%), url('${game.background_image}')`;
-  body.style.backgroundSize = "cover";
+  document.querySelectorAll("*").forEach((element) => {
+    element.style.background = "transparent";
+  });
+
+  document.documentElement.style.minHeight = "100%";
+  document.body.style.minHeight = "100%";
+  document.documentElement.style.background = `
+    linear-gradient(to top, black 30%, transparent 100%), 
+    linear-gradient(to top, transparent 65%, rgb(0,0,0,0.7) 100%),
+    url('${game.background_image}')
+`;
+  document.documentElement.style.backgroundAttachment = "fixed";
+  document.documentElement.style.backgroundSize = "cover";
+  document.documentElement.style.backgroundPosition = "center";
 
   body.appendChild(cardInfo);
 };
@@ -311,4 +327,7 @@ searchByBestYear();
 
 const updateSortVisibility = () => {
   sortGamesDropdown.style.display = inGame ? "none" : "block";
+  document.querySelectorAll("*").forEach((element) => {
+    element.style.background = "";
+  });
 };
